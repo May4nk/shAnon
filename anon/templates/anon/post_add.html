@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class='row'>
+    <div class='col s12'>
+      <form method='post'>
+      {% csrf_token %}
+        <div class='col s7'>
+	    <div class='box7 blue'>
+	        <div class="file-field input-field center bottom">
+                        <input type="file" accept='image/*' class='image_click' name='image' required>
+		        <div class='pad_bot'>
+			    <i class='material-icons'>add</i>
+			</div>
+		        <img id='output_img' />
+                </div>
+	    </div>
+	</div>
+        <div class='col s5'>
+	    <div class='row'>
+		    <div class='form_top'>
+		        <input id='input' name='caption' placeholder='Caption' required>
+		        <textarea id='input_txt' name='description' placeholder='Description'></textarea>
+		        <input id='input' name='tags' placeholder='Tags'>
+		    </div>
+		    <div class='form_btn'>
+		        <button class="btn waves-effect waves-light black-text blue" type="submit" name="action">Post</button>
+	           </div>
+	       </div>
+        </div>
+      </form>
+    </div>
+</div>
+{% endblock %}

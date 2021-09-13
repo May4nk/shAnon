@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class='row'>
+    <div class='reset_box1'>
+	    <div class='row'>
+	        <div class='reset_text'>Password Reset</div>
+		<div class='reset_text1'>Enter new password to reset.</div>
+		<form method='post'>
+		{% csrf_token %}
+		    <input type='password' name='new_password' id='re_txt' placeholder='New Password' required>
+		    <input type='password' name='renew_password' id='re_txt' placeholder='Renter Password' required>
+		    <button class="btn waves-effect waves-light blue black-text" type="submit" id='re_btn' name="action">update
+		    </button>
+	        </form>
+	    </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+
+<div class='row'>
+    <div class='col s12'>
+        <div class='col s4'>
+	    <div class='picdot'>	
+	        <img src='{% static 'boo.webp'%}' id='cimg' height='185px' width='185px'>
+	    </div>
+	</div>
+        <div class='col s8'>
+	    <div class='profile_marging'>
+		<div class='row'>
+			<span class='profile_usrnm'>{{use.username}}</span>
+			{% if use.username == usr.username %}
+		        <span><a class='waves-effect waves-light btn settings' href=''><i class='material-icons small'>settings</i></a></span>
+			{% elif following %}
+			<span><a class='waves-effect waves-light btn following' id={{use.id}}>following</a></span>
+			{% else %}
+			<span><a class='waves-effect waves-light btn follow' id={{use.id}}>follow</a></span>
+			{% endif %}
+		</div>
+		<div>
+		    <span class='profile_num'>{{post.count}}</span><span class='profile_alpha'>posts</span>
+		    <span class='profile_num'>{{follow.count}}</span><span class='profile_alpha'>following</span>
+		    <span class='profile_num'>{{following.count}}</span><span class='profile_alpha'>follower</span>
+		</div>
+		<div class='profile_status'>
+			Those who have wings they dont tie to the land.
+		</div>
+	    </div>
+	</div>
+    </div>
+</div>
+<hr color='black' />
+<div class='row'>
+    <div class='tab'>
+	<span class='btn tabs active' id='default'> posts </span>
+	    <span class=' btn tabs'> saved </span>
+    </div>
+    <div id="posts" class="tabcontent">
+	<div class='row'>
+	{% for i in post %}
+	    <div class='col s4 m4'>
+		    <div class='box_post z-depth-4'>
+			<img src='{% static i.pic %}' id='profile_post'>
+		    </div>
+	    </div>
+	{% endfor %}
+	</div>
+    </div>
+    <div id="saved" class="tabcontent">
+	<div class='row'>
+	{% for i in posts %}
+	    <div class='col s4 m4'>
+		    <div class='box_post z-depth-4'>
+		    	<img src={% static i.pic %} id='profile_post'>
+		    </div>
+	    </div>
+	{% endfor %}
+	</div>
+    </div>
+</div>
+{% endblock %}

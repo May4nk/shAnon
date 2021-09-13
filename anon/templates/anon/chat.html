@@ -1,0 +1,49 @@
+
+{% extends 'base.html' %}
+{% block content%}
+{% load static %}
+<div class='row mbtm'>
+    <div class='box6'>
+        <div class='col s12'>
+	    <div class='col s5'>
+	        <div class=box_6>
+		    <div class='white-text center box6_title'>
+			    <a href='{% url 'profile' usr.username%}' data={{usr.id}}>{{usr.username}}</a>
+		    </div>
+		    <hr/ class='white-text liine'>
+		    <div class='row'>
+		        <div class='box6dot'>
+			</div>
+			<div class='chat_profile'>
+			    <a class='chat_txt1' href=''>hey</a>
+			    <div class='chat_txt2'>last seen now</div>
+			</div>
+		    </div>
+	        </div>
+            </div> 
+	    <div class='col s7'>
+	        <div class='box_chat'>
+	            <div class='row'>
+	            </div>
+		    <div class='chat_section'>
+			<div class='ove'>
+		            <div class='row'>
+		                <div class='sender'>hey youksdjflkasdjflksdjklajflksadfj</div>
+		            </div>
+		            <div class='row'>
+		                <div class='reciever'> youklsjdflkadjsflkasdjlfkjsadfklsjdklfjsdklfjasdfkl sdkjfkl jklsfakld klajsdf</div>
+	                    </div>
+		        </div>
+	            </div>
+		    <div class='row'>
+		        <input class='chat_in' type='text' placeholder='type your message'>
+		    </div>
+                </div>
+            </div> 
+	</div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" crossorigin="anonymous"></script>
+<script src={% static 'chat.js' %}></script>
+{% endblock %}

@@ -1,0 +1,36 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+{% load static %}
+<link rel='stylesheet' href='{% static 'style.css' %}'>
+<title>shAnon</title>
+</head>
+<body>
+<div class='row'>
+    <div class='navbar-fixed'>
+    <nav class='black'>
+        <div class="nav-wrapper container">
+		<a href="{% url 'home' %}" class="brand-logo blue-text">shAnon</a>
+	    {% if usr.is_authenticated %}
+	    <ul class="right hide-on-med-and-down">
+		 <li><a href="{% url 'home' %}"><i class="material-icons blue-text">home</i></a></li>
+		 <li><a href="{% url 'chat' %}"><i class="material-icons blue-text">forum</i></a></li>
+		 <li><a href="{% url 'post' %}"><i class="material-icons blue-text">add</i></a></li>
+		 <li><a href='{% url 'profile' usr.username %}'><i class="material-icons blue-text">public</i></a></li>
+	    </ul>
+	    {% endif %}
+	</div>
+    </nav>
+    </div>
+</div>
+<div class='container'>
+    {% block content %}
+
+    {% endblock %}
+</div>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" crossorigin="anonymous"></script>
+<script src='{% static 'app.js' %}'></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+</body>
+</html>

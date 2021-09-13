@@ -1,0 +1,44 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+{% load static %}
+<link rel='stylesheet' href='{% static 'style.css' %}'>
+<title>shAnon</title>
+</head>
+<body>
+<div class='row'>
+<div class='col s12'>
+<div class='col s7'>
+    <img src='{% static 'lo1.jpg' %}' id='img'>	    
+</div>
+<div class='col s5'>
+    <div class='box'>
+	<div>
+	    <div class='blue-text box_head'>shAnon!</div>
+	    <div class='white-text box_minhead'>Share Annonymously!</div>
+	</div>
+	<form method='post' action=''>
+	{% csrf_token %}
+	    <div class='form_1'>	   
+		<input id='txt' class='white-text' name='username' placeholder='Username' required>
+		<input id='txt' class='white-text' name='password' type='password' placeholder='Password' required>
+		<div class='center' id='btn'>
+		    <button class="btn waves-effect waves-light blue black-text" type="submit" name="action">login
+			<i class="material-icons right">send</i>
+		    </button>
+		</div>
+	    </div>
+	</form>
+	<div id='link'><a href='{% url 'reset' %}'>forgot password?</a></div>
+    </div>
+    <div class='box1'>
+	<div class='white-text box1_cont'>
+	    Don't have an account?&nbsp&nbsp<a href='{% url 'signup' %}'>Sign Up</a>
+	</div>
+    </div>
+</div>
+</div>
+</body>
+</html>
