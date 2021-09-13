@@ -555,6 +555,19 @@
 
 #cimg{
 	border-radius: 50%;
+	position: absolute;
+	top: -167px;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: auto;
+	width: 185px;
+	height: 185px;
+}
+
+#radii{
+	border-radius: 50%;
+
 }
 
 .profile_marging{
@@ -683,6 +696,16 @@
 	margin: auto;
 	position: absolute;
 }
+
+.pradd{
+	margin-top: 161px;
+	margin-left: 157px;
+}
+
+.image_clk{
+	width: 27px !important;
+	margin-left: 159px !important;
+}
 /*====================================*/
 /*=============reset===================*/
 .reset_box{
@@ -751,9 +774,6 @@
 	border-radius: 5px;	
 }
 
-#cimg{
-	border-radius: 50%;
-}
 /*====================================*/
 
 /*================================*/

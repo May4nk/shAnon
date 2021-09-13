@@ -27,15 +27,41 @@ function getcsrfToken(name){
     };
 }(jQuery));
 */
-
-$('.image_click').on('change',function img(event){
+function pic(e,tag,input){
 	var reader = new FileReader();
 	reader.onload = function (){
-		$('#output_img').attr('src',reader.result);
+		$(tag).attr('src',reader.result);
 	}
-	reader.readAsDataURL(event.target.files[0]);
+	reader.readAsDataURL(input.files[0]);
+}
+
+$('.image_click').on('change',function(){
+	pic(event,'#output_img',this);
 });
 
+$('.image_clk').on('change',function(){
+	pic(event,'#cimg',this);
+	pix_id=$(this).attr('id');
+	src = $(this).val()
+	srco = src.substring(12)
+	$.ajax({
+		type: 'POST',
+		url: 'pix/',
+		headers: {
+		"X-CSRFToken": getcsrfToken('csrftoken'),
+		},
+		data: {
+			pix_id: pix_id,
+			src : srco,
+		},
+		'success': (data) => {
+			if(data){
+				location.reload();
+			}
+		}
+	});	
+
+});
 
 $('.box41_icn').click(function(){
 	like_id = $(this).attr('data');

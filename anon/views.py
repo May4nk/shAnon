@@ -219,7 +219,6 @@ def reset_link(req,urn):
     e = mail[:mail.index('@')]
     if req.method == 'POST':
         if crypt(passrd+em,'cr') == link:
-            print('cool')
             password = req.POST['new_password']
             new_password = req.POST['renew_password']
             if password == new_password:
@@ -229,6 +228,17 @@ def reset_link(req,urn):
         else:
             return redirect(reverse('signup'))
     return render(req,'anon/reset_link.html')
+
+def pix(req,userr):
+    if req.user.is_authenticated:
+        if req.method=='POST':
+            pix = req.POST['pix_id']
+            src = req.POST['src']
+            usr = Suser.objects.get(id=pix)
+            if usr:
+                usr.pic = src
+                usr.save()
+                return redirect('profile',usrname=usr.username)
 
 def logut(req):
     logout(req)

@@ -5,8 +5,15 @@
 <div class='row'>
     <div class='col s12'>
         <div class='col s4'>
-	    <div class='picdot'>	
-	        <img src='{% static 'boo.webp'%}' id='cimg' height='185px' width='185px'>
+	    <div class='picdot'>
+		<div class='file-field input-field'>
+			<input type="file" accept='image/*' class='image_clk' name='image' id={{usr.id}} required>
+			<img id='cimg' src='{% static usr.pic %}'/>
+		    <div class='pradd'>
+		        <i class='material-icons white-text small'>add</i>
+		    </div>
+		</div>
+
 	    </div>
 	</div>
         <div class='col s8'>

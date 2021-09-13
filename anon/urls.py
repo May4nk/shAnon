@@ -19,4 +19,5 @@ urlpatterns = [
         path('u/<str:usrname>/follow/',views.follow,name='follow'),
         path('u/<str:usrname>/unfollow/',views.unfollow,name='unfollow'),
         path('reset/<str:urn>/',views.reset_link,name='reset_pass'),
+        path('u/<str:userr>/pix/',views.pix,name='pix'),
 ]

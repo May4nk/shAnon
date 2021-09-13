@@ -39,6 +39,7 @@ class Suser(AbstractBaseUser):
     email = models.EmailField(max_length=50,unique=True)
     password = models.CharField(max_length=30)
     contact = models.IntegerField(blank=True,null=True)
+    pic = models.CharField(max_length=500,blank=True)
     reset_link = models.CharField(max_length=50,blank=True,null=True)
     status = models.CharField(max_length=255,blank=True,null=True)
     created = models.DateField(auto_now_add=True)
