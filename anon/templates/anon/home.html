@@ -75,7 +75,7 @@
 			<span id='like_no'>{{i.likes.count}}</span> likes
 		</div>
 		<div>
-		    <span class='caption'><a class='box4_caption' href='{% url 'profile' usr.username %}'>{{usr.username}}</a>&nbsp&nbsp {{i.caption}}</span>
+		    <a class='box4_caption' href='{% url 'profile' i.owner %}'>{{i.owner}}</a>&nbsp<span class='caption'> {{i.caption}}</span>
 		</div>
 		<hr class='box_4line'/>
 		<div class='cmnt_section'>
@@ -110,7 +110,14 @@
 	    </div>
 	    <div class='box_5'>
                 <div class='fonter'> Suggestions For You</div> 
-		<div class='box5_dot'></div>
+	 	{% for i in sgst|slice:':4' %}
+		<div class='row'>
+		    <div class='box5_dot'></div>
+		    <div class='suggest'>
+			    <a href='{% url 'profile' i %}'>{{i}}</a>
+		    </div>
+		</div>
+		{% endfor %}
 	    </div>
 	</div>
     </div>

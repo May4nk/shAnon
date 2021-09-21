@@ -7,8 +7,8 @@
         <div class='col s4'>
 	    <div class='picdot'>
 		<div class='file-field input-field'>
-			<input type="file" accept='image/*' class='image_clk' name='image' id={{usr.id}} required>
-			<img id='cimg' src='{% static usr.pic %}'/>
+			<input type="file" accept='image/*' class='image_clk' name='image' id={{use.id}} required>
+			<img id='cimg' src='{% static use.pic %}'/>
 		    <div class='pradd'>
 		        <i class='material-icons white-text small'>add</i>
 		    </div>
@@ -22,16 +22,19 @@
 			<span class='profile_usrnm'>{{use.username}}</span>
 			{% if use.username == usr.username %}
 		        <span><a class='waves-effect waves-light btn settings' href=''><i class='material-icons small'>settings</i></a></span>
-			{% elif following %}
-			<span><a class='waves-effect waves-light btn following' id={{use.id}}>following</a></span>
-			{% else %}
+		 	{% else %}
+
+			    {% if usr_following %} 
+			         <span><a class='waves-effect waves-light btn following' id={{use.id}}>following</a></span>
+			     {% else %}
 			<span><a class='waves-effect waves-light btn follow' id={{use.id}}>follow</a></span>
+			     {% endif %}
 			{% endif %}
 		</div>
 		<div>
 		    <span class='profile_num'>{{post.count}}</span><span class='profile_alpha'>posts</span>
-		    <span class='profile_num'>{{follow.count}}</span><span class='profile_alpha'>following</span>
-		    <span class='profile_num'>{{following.count}}</span><span class='profile_alpha'>follower</span>
+		    <span class='profile_num'>{{use_following.count}}</span><span class='profile_alpha'>following</span>
+		    <span class='profile_num'>{{use_follower.count}}</span><span class='profile_alpha'>follower</span>
 		</div>
 		<div class='profile_status'>
 			Those who have wings they dont tie to the land.
@@ -41,10 +44,13 @@
     </div>
 </div>
 <hr color='black' />
+{% if usr_following or use.username == usr.username %}
 <div class='row'>
     <div class='tab'>
 	<span class='btn tabs active' id='default'> posts </span>
+    {% if use.username == usr.username %}
 	    <span class=' btn tabs'> saved </span>
+    {% endif %}
     </div>
     <div id="posts" class="tabcontent">
 	<div class='row'>
@@ -57,6 +63,7 @@
 	{% endfor %}
 	</div>
     </div>
+    {% if use.username == usr.username %}
     <div id="saved" class="tabcontent">
 	<div class='row'>
 	{% for i in posts %}
@@ -66,7 +73,9 @@
 		    </div>
 	    </div>
 	{% endfor %}
-	</div>
+	</div>	
     </div>
+  {% endif %}
 </div>
+{% endif %}
 {% endblock %}

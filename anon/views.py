@@ -1,12 +1,13 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth import authenticate,login,logout
 from django.urls import reverse
-from .models import Suser,Post,Follow,Comments
+from .models import Suser,Post,Follow,Comments,Chat,Messages
 from django.http import HttpResponseRedirect
 from django.core.mail import send_mail
 from crypt import crypt
 from random import shuffle
-
+from django.db import IntegrityError
+from django.db.models import Q
 
 def loggin(req):
     if req.user.is_authenticated:
@@ -45,12 +46,16 @@ def home(req):
         liked = Post.objects.filter(likes=req.user.id)
         cmnt = Comments.objects.all()
         usr_obj = Suser.objects.get(id=usr.id)
+        k = [i for i in usr_obj.follower.all()]
+
+        suggestion = Suser.objects.exclude(following__in = k).exclude(username=usr.username)
 
         context = {
                 'post': posts,
                 'cmnts': cmnt,
                 'usr':usr,
                 'usr_obj':usr_obj,
+                'sgst': suggestion
         }
         return render(req,'anon/home.html',context)
     else:
@@ -105,8 +110,23 @@ def comment(req):
 def chat(req):
     if req.user.is_authenticated:
         usr = req.user
+        ppl = Follow.objects.filter(follower=usr.id)
+        solo = Chat.objects.filter(first=usr.id)
+        if req.method=="POST":
+            chat_obj = req.POST['value']
+            for i in chat_obj:
+                 chatter = Chat(first=Suser.objects.get(id=usr.id),second=Suser.objects.get(id=i))
+                 if chatter:
+                    chatter.save()
+                    print(done)
+
+        cm = Messages.objects.all()
+        thread=Chat.objects.by_user(user=usr).prefetch_related('chatmsg')
         context = {
                 'usr':usr,
+                'ppl':ppl,
+                'solo': solo,
+                'cm': cm,
         }
         return render(req,'anon/chat.html',context)
     else:
@@ -142,16 +162,20 @@ def profile(req,usrname):
     if req.user.is_authenticated:
         usr = Suser.objects.get(username=req.user)
         post = Post.objects.filter(owner=use.id)
-        posts = Post.objects.filter(owner=use.id,saved=use.id)
-        follow = Follow.objects.filter(follower=use.id)
-        following = Follow.objects.filter(following=use.id)
+        posts = Post.objects.filter(saved=usr.id)
+        usr_follower = Follow.objects.filter(following=usr.id,follower=use.id)
+        usr_following = Follow.objects.filter(follower=usr.id,following=use.id)
+        use_following = Follow.objects.filter(follower=use.id)
+        use_follower = Follow.objects.filter(following=use.id)
     context = {
             'usr': usr,
             'use': use,
             'post': post,
             'posts': posts,
-            'follow': follow,
-            'following': following,
+            'usr_follower': usr_follower,
+            'usr_following': usr_following,
+            'use_follower': use_follower,
+            'use_following': use_following,
             }
     return render(req,'anon/profile.html',context) 
 
@@ -166,7 +190,8 @@ def follow(req,usrname):
             else:
                 follow_ins = Follow(follower=follower,following=following)
                 follow_ins.save()
-                return redirect('profile', usrname='usrname')
+                return redirect('profile', usrname=usrname)
+
 
 def unfollow(req,usrname):
     if req.user.is_authenticated:
@@ -176,7 +201,7 @@ def unfollow(req,usrname):
             try:
                 unfollow_ins = Follow.objects.get(follower=follower,following=following)
                 unfollow_ins.delete()
-                return redirect(reverse('profile',usrname=usrname))
+                return redirect('profile',usrname=usrname)
             except Follow.DoesNotExist:
                 return redirect(reverse('home'))
 
@@ -229,6 +254,7 @@ def reset_link(req,urn):
             return redirect(reverse('signup'))
     return render(req,'anon/reset_link.html')
 
+
 def pix(req,userr):
     if req.user.is_authenticated:
         if req.method=='POST':
@@ -239,6 +265,7 @@ def pix(req,userr):
                 usr.pic = src
                 usr.save()
                 return redirect('profile',usrname=usr.username)
+
 
 def logut(req):
     logout(req)

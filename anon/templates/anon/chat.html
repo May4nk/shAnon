@@ -2,43 +2,90 @@
 {% extends 'base.html' %}
 {% block content%}
 {% load static %}
-<div class='row mbtm'>
+<div class='row'>
     <div class='box6'>
         <div class='col s12'>
 	    <div class='col s5'>
 	        <div class=box_6>
-		    <div class='white-text center box6_title'>
+		    <div class='white-text box6_title'>
 			    <a href='{% url 'profile' usr.username%}' data={{usr.id}}>{{usr.username}}</a>
+		            <span class='right box6_icn'>
+				    <i id='modal1' class='material-icons tiny blue-text'>border_color </i>
+			    </span>
 		    </div>
+		    <!-- modal1 -->
+		    <div id='modalx' class='modal'>
+		        <div class='row'>
+			    <span class='blue-text modalheader'>Add to chat</span>
+			    <i class="material-icons blue-text close">cancel</i>
+			</div>
+			<hr/ class='white-text'>
+			<div class='row modal_content'>
+			     <div class='row row_1'>
+			         <div class="input-field">
+			             <input placeholder='search' type="text" class='inp'>
+			         </div>
+			     </div>
+			     <div id='modal_box'>
+				{% for i in ppl %}
+        		     <p>
+                                 <label>
+					 <input type="checkbox" class="blt filled-in"value='{{i.following.id}}' />
+				    <span>{{i.following}}</span>
+				</label>
+			    </p>
+			    {% endfor %}
+			    </div>
+			</div>
+	            </div>
+		    <!--modal1 end -->
 		    <hr/ class='white-text liine'>
-		    <div class='row'>
-		        <div class='box6dot'>
-			</div>
-			<div class='chat_profile'>
-			    <a class='chat_txt1' href=''>hey</a>
-			    <div class='chat_txt2'>last seen now</div>
-			</div>
-		    </div>
+		    {% for j in solo %}
+		    <div class='chatter_box' id={{j.second.id}}>
+		          <div class='row'>
+		              <div class='box6dot'></div>
+			      <div class='chat_profile'>
+				  <a class='chat_txt1' href=''>{{j.second|title}}</a>
+			          <div class='chat_txt2'>last seen now</div>
+			      </div>
+			  </div>
+                    </div>
+	    	    {% endfor %}
 	        </div>
             </div> 
 	    <div class='col s7'>
-	        <div class='box_chat'>
+	    {% for j in solo %}
+		 <div class='box_chat' id={{j.second.id}}>
 	            <div class='row'>
+		        <div class='header'>
+				{{j.second|title}}
+			</div>
 	            </div>
+		    <hr/ class='white-text'>
 		    <div class='chat_section'>
 			<div class='ove'>
+			 {% for i in cm %}
+			 {% if i.thread.first == usr and i.thread.second == j.second  or i.thread.first == j.second and i.thread.second == usr %}
+
+			    {% if i.thread.first == usr %}
 		            <div class='row'>
-		                <div class='sender'>hey youksdjflkasdjflksdjklajflksadfj</div>
-		            </div>
+				    <div class='sender'>{{i.message}}</div> 
+			    </div>
+			    {%elif i.thread.first == j.second %}
 		            <div class='row'>
-		                <div class='reciever'> youklsjdflkadjsflkasdjlfkjsadfklsjdklfjsdklfjasdfkl sdkjfkl jklsfakld klajsdf</div>
-	                    </div>
+				    <div class='receiver'>{{i.message}}</div> 
+			    </div>
+			    {% endif %}
+			 {% endif %}
+			 {% endfor %}
+
 		        </div>
 	            </div>
 		    <div class='row'>
 		        <input class='chat_in' type='text' placeholder='type your message'>
 		    </div>
-                </div>
+		 </div>
+	    {% endfor %}
             </div> 
 	</div>
     </div>

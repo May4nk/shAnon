@@ -1,0 +1,149 @@
+
+{% extends 'base.html' %}
+{% block content%}
+{% load static %}
+{% load s_tag %}
+<div class='row mbtm'>
+    <div class='box6'>
+        <div class='col s12'>
+	    <div class='col s5'>
+	        <div class=box_6>
+		    <div class='white-text box6_title'>
+			    <a href='{% url 'profile' usr.username%}' data={{usr.id}}>{{usr.username}}</a>
+		            <span class='right box6_icn'>
+				    <i id='modal1' class='material-icons tiny blue-text'>border_color </i>
+			    </span>
+		    </div>
+		    <!-- modal1 -->
+		    <div id='modalx' class='modal'>
+		        <div class='row'>
+			    <span class='blue-text modalheader'>Add to chat</span>
+			    <i class="material-icons blue-text close">cancel</i>
+			</div>
+			<hr/ class='white-text'>
+			<div class='row modal_content'>
+			     <div class='row row_1'>
+			         <div class="input-field">
+			             <input placeholder='search' type="text" class='inp'>
+			         </div>
+			     </div>
+			     <div id='modal_box'>
+				{% for i in ppl %}
+        		     <p>
+                                 <label>
+					 <input type="checkbox" class="blt filled-in"value='{{i.following.id}}' />
+				    <span>{{i.following}}</span>
+				</label>
+			    </p>
+			    {% endfor %}
+			    </div>
+			</div>
+	            </div>
+		    <!--modal1 end -->
+		    <hr/ class='white-text liine'>
+		    {% for i in chatty %}
+		    {% if i.first == usr %}
+		    {% with i.second as k %}
+		    <div class='chatter_box' id={{k.id}}>
+		    <div class='row'>
+		        <div class='box6dot'>
+			</div>
+			<div class='chat_profile'>
+				<a class='chat_txt1' href='{% url 'profile' k %}'>{{k|title}}</a>
+			    <div class='chat_txt2'>last seen now</div>
+			</div>
+		    </div>
+		    </div>
+		    {% endwith %}
+		    {% else %}
+		        {% update i.first as k %}
+		    <div class='chatter_box' id={{k.id}}>
+		    <div class='row'>
+		        <div class='box6dot'>
+			</div>
+			<div class='chat_profile'>
+				<a class='chat_txt1' href='{% url 'profile' k %}'>{{k|title}}</a>
+			    <div class='chat_txt2'>last seen now</div>
+			</div>
+		    </div>
+		    </div>
+		    {% endif %}
+		    {% endfor %}
+	        </div>
+            </div> 
+	    <div class='col s7'>
+		{% for i in chatty %}	
+		{% if i.first == usr %}
+		{% with i.second as k %}
+		 <div class='box_chat' id={{k.id}}>
+	            <div class='row'>
+		        <div class='header'>
+				{{k|title}}
+			</div>
+	            </div>
+		    <hr/ class='white-text'>
+		    <div class='chat_section'>
+			<div class='ove'>
+		       {%for threads in thread %}
+		       {% for b in threads.chatmsg.all %}	
+			    {% if b.usr == usr %}
+		            <div class='row'>
+				    <div class='sender'>{{b.message}}</div>
+		            
+			    </div>
+			    {% else %}
+		            <div class='row'>
+				    <div class='reciever'>{{b.message}}</div>
+	                    </div>
+
+			    {% endif %}
+			{% endfor %}
+			{% endfor %}
+		        </div>
+	            </div>
+		    <div class='row'>
+		        <input class='chat_in' type='text' placeholder='type your message'>
+		    </div>
+                </div>
+		{%endwith%}
+		{% else %}
+		{% update i.first as k %}
+		 <div class='box_chat' id={{k.id}}>
+	            <div class='row'>
+		        <div class='header'>
+				{{k|title}}
+			</div>
+	            </div>
+		    <hr/ class='white-text'>
+		    <div class='chat_section'>
+			<div class='ove'>
+		       {%for threads in thread %}
+		       {% for b in threads.chatmsg.all %}	
+			    {% if b.usr == k %}
+		            <div class='row'>
+				    <div class='sender'>{{b.message}}</div>
+		            </div>
+			    {% else  %}	
+		            <div class='row'>
+				    <div class='reciever'>{{b.message}}</div>
+	                    </div>
+
+			    {% endif %}
+			    {% endfor %}
+			{% endfor %}
+		        </div>
+	            </div>
+		    <div class='row'>
+		        <input class='chat_in' type='text' placeholder='type your message'>
+		    </div>
+                </div>
+		{%endif%}
+		{% endfor %}
+            </div> 
+	</div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js" crossorigin="anonymous"></script>
+<script src={% static 'chat.js' %}></script>
+{% endblock %}

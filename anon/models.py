@@ -1,5 +1,13 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser,BaseUserManager,PermissionsMixin
+from django.db.models import Q
+
+class ThreadManager(models.Manager):
+    def by_user(self, **kwargs):
+        user = kwargs.get('user')
+        lookup = Q(first=user) | Q(second=user)
+        qs = self.get_queryset().filter(lookup).distinct()
+        return qs
 
 class UserManager(BaseUserManager):
     def create_user(self,name,email,username,password=None):
@@ -56,18 +64,11 @@ class Suser(AbstractBaseUser):
     def __str__(self):
         return self.username
     
-    def is_staff(self):
-        return self.is_staff
-
-    def is_admin(self):
-        return self.is_admin
-
     def has_perm(self, perm, obj=None):
         return self.is_admin
 
     def has_module_perms(self, app_label):
-        return False
-
+        return True
 
 
 class Post(models.Model):
@@ -101,11 +102,12 @@ class Chat(models.Model):
     second = models.ForeignKey(Suser,on_delete=models.CASCADE,blank=True, null=True,related_name='second')
     updated = models.DateTimeField(auto_now =True)
     created = models.DateTimeField(auto_now_add =True)
-
+    
+    objects = ThreadManager()
     class Meta:
         unique_together = ['first','second']
 
-class chatMessage(models.Model):
+class Messages(models.Model):
     thread = models.ForeignKey(Chat,on_delete=models.CASCADE,blank=True, null=True,related_name='chatmsg')
     usr = models.ForeignKey(Suser,on_delete=models.CASCADE)
     message = models.TextField()
