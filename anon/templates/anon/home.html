@@ -43,7 +43,7 @@
 			<div class='white-text'>{{c.cmnt}}</div>
 		<input id='cmnt' name='comment' placeholder='any comments!'>
 	    </div>
-	    
+	    <!------------------------------------!>	    
 	    {% for i in post %}
 	    
 	    <div class='box4'>
@@ -53,6 +53,7 @@
 	            </div>
 		    <div class='pr_title'>
 			    <a href={% url 'profile' i.owner %}>{{i.owner}}</a>
+			    <div data='{{i.owner}}' data-name='{{i.owner.name}}'data-following='{{i.owner.follower.count}}' data-post='{{i.owner.post_set.all.count}}' data-follower={{i.owner.following.count}} hidden></div>
 		    </div>
 		</div>
 		<div class='box_4'>
@@ -89,7 +90,7 @@
 		</div>
 		</div>
 		<div class='row'>
-		    <input id='cmnt' name='cmnt' placeholder='any comments!'>
+		    <input id='cmnt' name='cmnt' placeholder='any comments! Think before comment'>
 		    <a class='btn border' data='{{i.id}}'>doit!</a>
 		</div>
 	    </div>
@@ -118,6 +119,32 @@
 		    </div>
 		</div>
 		{% endfor %}
+	    </div>
+	</div>
+    </div>
+</div>
+<div class='profile_modal' id='pmodal' hidden>
+    <div class='row'>
+        <div class='box5_dot'></div>
+	<div class='pm_text'>
+	    <a class='pm_text1' href=''>hello</a>
+	    <div class='pm_text2'>boom</div>
+	</div>
+    </div>
+    <hr class='white'>
+    <div class='row pm_follow'>
+        <div class='center'>
+	    <div class='col s12'>
+		 <span class='col s4'>1</span>
+		 <span class='col s4'>2</span>
+		 <span class='col s4'>3</span>
+	    </div>
+	</div>
+        <div class='center'>
+	    <div class='col s12'>
+	   	 <span class='col s4'>post</span>
+		 <span class='col s4'>following</span>
+		 <span class='col s4'>follower</span>
 	    </div>
 	</div>
     </div>

@@ -50,7 +50,8 @@ class Suser(AbstractBaseUser):
     pic = models.CharField(max_length=500,blank=True)
     reset_link = models.CharField(max_length=50,blank=True,null=True)
     status = models.CharField(max_length=255,blank=True,null=True)
-    created = models.DateField(auto_now_add=True)
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
     is_active = models.BooleanField(default=True)
     is_staff = models.BooleanField(default=False)
     is_admin = models.BooleanField(default=False)
@@ -79,23 +80,23 @@ class Post(models.Model):
     tag = models.CharField(max_length=50,blank=True,null=True)
     likes = models.ManyToManyField(Suser,related_name='suser_likes')
     saved = models.ManyToManyField(Suser,related_name='suser_saved')
-    created = models.DateField(auto_now_add=True)
-    updated = models.DateField(auto_now=True)
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
 
 
 class Follow(models.Model):
     follower = models.ForeignKey(Suser,on_delete=models.CASCADE,related_name='follower')
     following = models.ForeignKey(Suser,on_delete=models.CASCADE,related_name='following')
     perm = models.BooleanField(default=False)
-    created = models.DateField(auto_now_add=True)
+    created = models.DateTimeField(auto_now_add=True)
    
 
 class Comments(models.Model):
     owner = models.ForeignKey(Suser,on_delete=models.CASCADE)
     post = models.ForeignKey(Post,on_delete=models.CASCADE,null=True)
     cmnt = models.CharField(max_length=300)
-    created = models.DateField(auto_now_add=True)
-    updated = models.DateField(auto_now=True)
+    created = models.DateTimeField(auto_now_add=True)
+    updated = models.DateTimeField(auto_now=True)
 
 class Chat(models.Model):
     first = models.ForeignKey(Suser,on_delete=models.CASCADE,blank=True, null=True,related_name='first')

@@ -116,3 +116,4 @@ $('.chatter_box').click(function(){
 	$('.is_active').removeClass('is_active');
 	$('.box_chat[id="' +chat_id +'"]').addClass('is_active');
 });
+

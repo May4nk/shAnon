@@ -209,3 +209,49 @@ $('.following').click(function(){
 	});
 });
 
+
+$('.pr_title').hover(function(){
+	let name = $(this).children('div').attr('data-name')
+	let username = $(this).children('div').attr('data')
+	let follower = $(this).children('div').attr('data-follower')
+	let following = $(this).children('div').attr('data-following')
+	let post = $(this).children('div').attr('data-post')
+        $('<div class="profile_modal"></div>')
+        .html(
+    "<div class='row'>\n"+
+        "<div class='box5_dot'></div>\n"+
+	"<div class='pm_text'>\n"+
+	    "<a class='pm_text1' href=''>"+username+"</a>\n"+
+	   " <div class='pm_text2'>"+name+"</div>\n"+
+	"</div>\n"+
+    "</div>\n"+
+    "<hr class='white'>\n"+
+    "<div class='row pm_follow'>\n"+
+        "<div class='center'>\n"+
+	    "<div class='col s12'>\n"+
+		 "<span class='col s4'>"+post+"</span>\n"+
+		 "<span class='col s4'>"+following+"</span>\n"+
+		 "<span class='col s4'>"+follower+"</span>\n"+
+	    "</div>\n"+
+	"</div>\n"+
+        "<div class='center'>\n"+
+	    "<div class='col s12'>\n"+
+	   	 "<span class='col s4'>post</span>\n"+
+		 "<span class='col s4'>following</span>\n"+
+		 "<span class='col s4'>follower</span>\n"+
+	    "</div>\n"+
+	"</div>\n"+
+    "</div>\n"+
+    "</div>"
+	)
+        .appendTo('body')
+        .fadeIn('slow');
+}, function() {
+        $('.profile_modal').remove();
+}).mousemove(function(e) {
+        var mousex = e.pageX + 20; //Get X coordinates
+        var mousey = e.pageY + 10; //Get Y coordinates
+        $('.profile_modal')
+        .css({ top: mousey, left: mousex })
+
+});

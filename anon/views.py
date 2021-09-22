@@ -42,12 +42,13 @@ def signup(req):
 def home(req):
     if req.user.is_authenticated:
         usr=req.user
-        posts = Post.objects.all()
+        a = Suser.objects.get(id=usr.id)
+        b = [i for i in a.follower.all().order_by('created')]
+        posts = [l for i in Suser.objects.filter(following__in = b) for l in i.post_set.all().order_by('-created')]
         liked = Post.objects.filter(likes=req.user.id)
         cmnt = Comments.objects.all()
         usr_obj = Suser.objects.get(id=usr.id)
         k = [i for i in usr_obj.follower.all()]
-
         suggestion = Suser.objects.exclude(following__in = k).exclude(username=usr.username)
 
         context = {
