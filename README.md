@@ -9,14 +9,20 @@ tracking of data and more security.
 
 * Download the project.
 * Create a Virtualenv.
-* pip install all dependancies in the environment through requirements.txt.
+* pip install all dependancies in the environment through requirements.txt
+  ```python
   pip3 install -r requirements.txt
+  ```
 * Make migrations and then migrate the project.
-  '''python3 manage.py makemigrations
-     python3 manage.py migrate'''
+  ```python
+     python3 manage.py makemigrations
+     python3 manage.py migrate
+  ```
 
 * Run the server.
+ ```python
   python3 manage.py runserver
+ ```
 
 * For setup follow the above step and you are good to go :) 
 
