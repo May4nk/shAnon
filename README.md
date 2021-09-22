@@ -20,9 +20,9 @@ tracking of data and more security.
   ```
 
 * Run the server.
- ```python
+  ```python
    python3 manage.py runserver
- ```
+  ```
 
 * For setup follow the above step and you are good to go :) 
 
