@@ -16,10 +16,6 @@ def loggin(req):
         username=req.POST['username']
         password=req.POST['password']
         usr = authenticate(req,username=username,password=password)
-        if usr:
-            print(True)
-        else:
-            print('go')
         if usr is not None:
             login(req,usr)
             return redirect(reverse('home'))
@@ -115,11 +111,14 @@ def chat(req):
         solo = Chat.objects.filter(first=usr.id)
         if req.method=="POST":
             chat_obj = req.POST['value']
-            for i in chat_obj:
-                 chatter = Chat(first=Suser.objects.get(id=usr.id),second=Suser.objects.get(id=i))
-                 if chatter:
-                    chatter.save()
-                    print(done)
+            for i in chat_obj.split(','):
+                try:
+                    chatter = Chat(first=Suser.objects.get(id=usr.id),second=Suser.objects.get(id=i))
+                    if chatter:
+                        chatter.save()
+                except IntegrityError:
+                    continue
+                 
 
         cm = Messages.objects.all()
         thread=Chat.objects.by_user(user=usr).prefetch_related('chatmsg')
@@ -168,6 +167,10 @@ def profile(req,usrname):
         usr_following = Follow.objects.filter(follower=usr.id,following=use.id)
         use_following = Follow.objects.filter(follower=use.id)
         use_follower = Follow.objects.filter(following=use.id)
+        if req.method=='POST':
+            stat = req.POST['stat']
+            usr.status = stat
+            usr.save()
     context = {
             'usr': usr,
             'use': use,

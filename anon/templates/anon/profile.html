@@ -21,7 +21,11 @@
 		<div class='row'>
 			<span class='profile_usrnm'>{{use.username}}</span>
 			{% if use.username == usr.username %}
-		        <span><a class='waves-effect waves-light btn settings' href=''><i class='material-icons small'>settings</i></a></span>
+		        <span>
+			    <a class='btn-floating waves-effect waves-light settings' href=''>
+			        <i class='material-icons small blue-text'>settings</i>
+			    </a>
+			</span>
 		 	{% else %}
 
 			    {% if usr_following %} 
@@ -36,9 +40,15 @@
 		    <span class='profile_num'>{{use_following.count}}</span><span class='profile_alpha'>following</span>
 		    <span class='profile_num'>{{use_follower.count}}</span><span class='profile_alpha'>follower</span>
 		</div>
+		{% if use.username == usr.username %}
 		<div class='profile_status'>
-			Those who have wings they dont tie to the land.
+			{{use.status}}
 		</div>
+		{% else %}
+		<div class='profile_statususr'>
+			{{use.status}}
+		</div>
+		{% endif %}
 	    </div>
 	</div>
     </div>

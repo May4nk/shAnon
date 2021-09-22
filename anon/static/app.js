@@ -255,3 +255,37 @@ $('.pr_title').hover(function(){
         .css({ top: mousey, left: mousex })
 
 });
+
+$('.profile_status').one('click',function(e){
+	a = $(this).html()
+	$(this).append(
+	"<input id='status_input' type='text' maxlength='150' placeholder='"+a.trim()+"'/>"
+	)
+	$('#status_input').keyup(function(e){
+		if( e.keyCode == '13'){
+		      
+		      $.ajax({
+			      type: 'POST',
+			      url: '#',
+			      headers: {
+				      "X-CSRFToken": getcsrfToken('csrftoken'),
+			      },
+			      data: {
+				      stat: $('#status_input').val(),
+			      },
+			      'success': (data) => {
+				      if(data){
+					      location.reload();
+				      }
+			      }
+		      }); 
+		
+	}
+	})
+
+})
+
+
+
+
+

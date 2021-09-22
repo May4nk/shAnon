@@ -373,7 +373,7 @@
 }
 
 .pm_text{
-	margin-left: 87px;
+	margin-left: 97px;
 	margin-top: -56px;
 }
 
@@ -711,6 +711,7 @@
 	font-size: 29px;
 	margin-bottom: 10px;
 	color: white;
+	margin-left: 9px;
 }
 
 .profile_num{
@@ -728,6 +729,14 @@
 }
 
 .profile_status{
+	margin-top: 17px;
+	font-weight: 500;
+	font-size: 17px;
+	color: white;
+	cursor: pointer;
+}
+
+.profile_statususr{
 	margin-top: 17px;
 	font-weight: 500;
 	font-size: 17px;
@@ -769,11 +778,8 @@
 	padding: 1px 7px;
 }
 .settings{
-	color: black !important;
-	background-color: rgb(61,137,197) !important;
+	background-color: black !important;
 	margin-left: 40px;
-	padding: 0px 11px;
-	height: 33px !important;
 }
 .tab{
 	overflow: hidden !important;
@@ -919,7 +925,7 @@
 	margin-top: 20px;
 	margin-bottom: 10px;
 	padding-right: 9px;
-	color:white;
+	color: white;
 }
 
 #re_btn{
@@ -928,6 +934,16 @@
 	width: 301px;
 	text-transform: capitalize;
 	border-radius: 5px;	
+}
+
+#status_input{
+	border: 1px solid black;
+	color: #2196F3;
+	height: 26px;
+	width: 391px;
+	padding: 0px 9px 0px 9px;
+	border-radius: 7px;
+	background-color: black;
 }
 
 /*====================================*/
