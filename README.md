@@ -13,18 +13,21 @@ tracking of data and more security.
   ```python
    pip3 install -r requirements.txt
   ```
-* Make migrations and then migrate the project.
+* To make migrations and then migrate the project.
   ```python
    python3 manage.py makemigrations
    python3 manage.py migrate
   ```
+* If nothing to migrate then you can run the server.
 
 * Run the server.
   ```python
    python3 manage.py runserver
   ```
 
-* For setup follow the above step and you are good to go :) 
+* For setup follow the above step.
+
+* Sign up for new account and you are good to go :) 
 
 
 
