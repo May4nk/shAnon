@@ -2,7 +2,7 @@
 shAnon is a social(instagram) site which helps to connect users more securely.
 
 ## Introduction
-(currently in developing phase)App for better connectivity among users without 
+(***currently in developing phase,non-responsive but works fine***)App for better connectivity among users without 
 tracking of data and more security.
 
 ## Usage
