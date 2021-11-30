@@ -8,13 +8,16 @@
 <title>shAnon</title>
 </head>
 <body>
-<div class='row'>
+<div class='row login md'>
     <div class='col s12'>
     <div class='box2'>
         <div>
 	    <div class='blue-text box_head'>signUp</div>
 		    <div class='white-text box_minhead'>connect relishly!</div>
 	    </div>
+	    {% for message in messages %}
+	    <div class='signup_error'>{{message}}</div>
+	    {% endfor %}
 	    <form method='post' action=''>
 	    {% csrf_token %}
 	        <div class='form_1'>	   
@@ -28,7 +31,6 @@
 	            </div>
 		</div>
             </form>
-	    <div id='link'><a href='{% url 'reset' %}'>forgot password?</a></div>
         </div>
 	<div class='box_2'>
 	    <div class='white-text box1_cont'>

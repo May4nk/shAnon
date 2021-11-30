@@ -26,7 +26,7 @@
 		    </div>
 		</div>
 		<div class='box_4'>
-		    <img id='home_pix'/>
+		    <img id='home_pix' onerror=this.src='https://st2.depositphotos.com/1009634/7235/v/600/depositphotos_72350117-stock-illustration-no-user-profile-picture-hand.jpg'>
 		</div>
 		<div class='box4_list'>
 		    <span><i class='material-icons box41_icn' id='favorite' data='12124'>favorite</i></span>
@@ -49,7 +49,7 @@
 	    <div class='box4'>
                 <div class='row'>
 		    <div class='pr_dot'>
-			    <img src='{% static i.owner.pic %}' height='47px' width='47px' id='radii'>
+		    <img src='{% static i.owner.pic %}' height='47px' width='47px' id='radii' onerror=this.src='https://st2.depositphotos.com/1009634/7235/v/600/depositphotos_72350117-stock-illustration-no-user-profile-picture-hand.jpg'>
 	            </div>
 		    <div class='pr_title'>
 			    <a href={% url 'profile' i.owner %}>{{i.owner}}</a>
@@ -57,7 +57,7 @@
 		    </div>
 		</div>
 		<div class='box_4'>
-		    <img src='{% static i.pic %}' id='home_pix'/>
+		    <img src='{% static i.pic %}' id='home_pix' onerror=this.src='https://st2.depositphotos.com/1009634/7235/v/600/depositphotos_72350117-stock-illustration-no-user-profile-picture-hand.jpg'>
 		</div>
 		<div class='box4_list'>
 		    {% if usr_obj in  i.likes.all %}
@@ -90,7 +90,7 @@
 		</div>
 		</div>
 		<div class='row'>
-		    <input id='cmnt' name='cmnt' placeholder='any comments! Think before comment'>
+		    <input id='cmnt' name='cmnt' placeholder="Think before comment coz you can't take them back...">
 		    <a class='btn border' data='{{i.id}}'>doit!</a>
 		</div>
 	    </div>
@@ -100,8 +100,7 @@
         <div class='col s5'>
 	    <div class='box5'>
                 <div class='homeprdot'>
-			    <img src='{% static usr.pic %}' height='97px' width='97px' id='radii' >
-
+			    <img src='{% static usr.pic %}' height='97px' width='97px' id='radii' onerror=this.src='https://st2.depositphotos.com/1009634/7235/v/600/depositphotos_72350117-stock-illustration-no-user-profile-picture-hand.jpg'>
 		</div>
 		<div class='profile'>
 			<div class='white-text profile_font1'><a href={% url 'profile' usr.username %}>{{usr.name}}</a></div>
@@ -113,7 +112,9 @@
                 <div class='fonter'> Suggestions For You</div> 
 	 	{% for i in sgst|slice:':4' %}
 		<div class='row'>
-		    <div class='box5_dot'></div>
+		    <div class='box5_dot'>
+		    <img class='box5_pic' src='{% static i.pic %}' onerror=this.src='https://st2.depositphotos.com/1009634/7235/v/600/depositphotos_72350117-stock-illustration-no-user-profile-picture-hand.jpg'>
+		    </div>
 		    <div class='suggest'>
 			    <a href='{% url 'profile' i %}'>{{i}}</a>
 		    </div>
@@ -124,7 +125,7 @@
     </div>
 </div>
 <div class='profile_modal' id='pmodal' hidden>
-    <div class='row'>
+    <div class='row'>	
         <div class='box5_dot'></div>
 	<div class='pm_text'>
 	    <a class='pm_text1' href=''>hello</a>
@@ -149,5 +150,14 @@
 	</div>
     </div>
 </div>
+<div id="modalsearch" class="modal">
+    <div class="modal-content">
+      <h4>Modal Header</h4>
+      <p>A bunch of text</p>
+    </div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Agree</a>
+    </div>
+  </div>
 {% endblock %}
 

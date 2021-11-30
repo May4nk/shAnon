@@ -11,8 +11,9 @@
     <div class='navbar-fixed'>
     <nav class='black'>
         <div class="nav-wrapper container">
-		<a href="{% url 'home' %}" class="brand-logo blue-text">shAnon</a>
 	    {% if usr.is_authenticated %}
+	    <a href="{% url 'home' %}" class="brand-logo blue-text">shAnon</a>
+	    <input id='searching' class='white-text' name='searching' placeholder='Search...'>
 	    <ul class="right hide-on-med-and-down">
 		 <li><a href="{% url 'home' %}"><i class="material-icons blue-text">home</i></a></li>
 		 <li><a href="{% url 'chat' %}"><i class="material-icons blue-text">forum</i></a></li>

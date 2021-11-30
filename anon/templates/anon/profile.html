@@ -8,12 +8,17 @@
 	    <div class='picdot'>
 		<div class='file-field input-field'>
 			<input type="file" accept='image/*' class='image_clk' name='image' id={{use.id}} required>
-			<img id='cimg' src='{% static use.pic %}'/>
+			{% if use.username == usr.username%}
+			<img id='cimgusr' src='{% static use.pic %}' onerror=this.src='https://st2.depositphotos.com/1009634/7235/v/600/depositphotos_72350117-stock-illustration-no-user-profile-picture-hand.jpg'>
+			{% else %}
+			<img id='cimg' src='{% static use.pic %}' onerror=this.src='https://st2.depositphotos.com/1009634/7235/v/600/depositphotos_72350117-stock-illustration-no-user-profile-picture-hand.jpg'>
+			{% endif %}
+		    {% if use.username == usr.username %}
 		    <div class='pradd'>
 		        <i class='material-icons white-text small'>add</i>
 		    </div>
+		{% endif %}
 		</div>
-
 	    </div>
 	</div>
         <div class='col s8'>
@@ -37,9 +42,40 @@
 		</div>
 		<div>
 		    <span class='profile_num'>{{post.count}}</span><span class='profile_alpha'>posts</span>
-		    <span class='profile_num'>{{use_following.count}}</span><span class='profile_alpha'>following</span>
-		    <span class='profile_num'>{{use_follower.count}}</span><span class='profile_alpha'>follower</span>
+		    <span class='profile_num'>{{use_following.count}}</span><span id='fing' class='profile_alpha'>following</span>
+		    <span class='profile_num'>{{use_follower.count}}</span><span id='fer' class='profile_alpha'>follower</span>
 		</div>
+        <!--modal fing -->
+        <div id='modalfing'>
+            <div class='mfollowhead blue-text'>Following</div>
+            <i class='material-icons blue-text modalcross'>cancel</i>
+            <hr class='white'>
+            <div class='scrollfing'>
+				{% for i in use_following %}
+				<div class='scroll_dot'>
+					<img class='scroll_pic' src='{% static i.pic %}' onerror=this.src='https://st2.depositphotos.com/1009634/7235/v/600/depositphotos_72350117-stock-illustration-no-user-profile-picture-hand.jpg'>
+			    </div>
+                <div class='scroll_names'><a href='{% url 'profile' i.following %}'>{{i.following}}</a></div>
+			    {% endfor %}
+            </div>
+        </div>
+        <!--modal fing(END) -->
+        <!--modal fer -->
+        <div id='modalfer'>
+            <div class='mfollowerhead blue-text'>Follower</div>
+            <i class='material-icons blue-text modalcros'>cancel</i>
+            <hr class='white'>
+            <div class='scrollfer'>
+				{% for i in use_follower %}
+				<div class='scroll_dot'>
+					<img class='scroll_pic' src='{% static i.pic %}' onerror=this.src='https://st2.depositphotos.com/1009634/7235/v/600/depositphotos_72350117-stock-illustration-no-user-profile-picture-hand.jpg'>
+			    </div>
+                <div class='scroll_names'><a href='{% url 'profile' i.follower %}'>{{i.follower}}</a></div>
+			    {% endfor %}
+            </div>
+        </div>
+        <!--modal fer(END) -->
+
 		{% if use.username == usr.username %}
 		<div class='profile_status'>
 			{{use.status}}
@@ -57,11 +93,61 @@
 {% if usr_following or use.username == usr.username %}
 <div class='row'>
     <div class='tab'>
+    {% if use.username == usr.username %}
+	    <span class=' btn tabs'> profile </span>
+    {% endif %}
 	<span class='btn tabs active' id='default'> posts </span>
     {% if use.username == usr.username %}
 	    <span class=' btn tabs'> saved </span>
     {% endif %}
     </div>
+    {% if use.username == usr.username %}
+    <div id="profile" class="tabcontent">
+	<div class='row'>
+	    <div class='home_box'>
+		<i class='material-icons medium blue-text home_mat'>info_outline</i>
+	        <div class='col s12'>
+		    <div class='col s3'>
+		          <div class='home_name black-text'>
+				  Name
+		          </div>
+		          <div class='home_name black-text'>
+				  Username
+		          </div>
+		          <div class='home_name black-text'>
+				  Email
+		          </div>
+		    </div>
+		    <div class='col s9'>
+			  <div class='home_nameans'>
+		          	<i class='material-icons black-text'>mood</i>
+				<div class='hname'>{{usr.name}}</div>
+		          </div>
+			  <hr class='white'>
+			  <div class='home_nameans'>
+		          	<i class='material-icons black-text'>keyboard_arrow_right</i>
+				<div class='hname'>{{usr.username}}</div>
+		          </div>
+			  <hr class='white'>
+			  <div class='home_nameans'>
+		          	<i class='material-icons black-text'>edit</i>
+				<div class='hname'>{{usr.email}}</div>
+		          </div>
+			  <hr class='white'>
+			  <div class='home_pass'>
+		          	<i class='material-icons black-text'>enhanced_encryption</i>
+				<div class='hpass black-text'>Change Password</div>
+		          </div>
+			  <div class='home_private'>
+		          	<i class='material-icons black-text'>enhanced_encryption</i>
+				<div class='hprivate black-text'>Private Account</div>
+		          </div>
+		    </div>
+	        </div>
+	    </div>
+	</div>	
+    </div>
+  {% endif %}
     <div id="posts" class="tabcontent">
 	<div class='row'>
 	{% for i in post %}

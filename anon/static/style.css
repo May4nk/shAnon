@@ -1,39 +1,40 @@
 /*------------login-------------*/
-
+.login{
+	overflow: hidden;
+	background-color: black !important;
+}
 .box {
 	border: 1px solid white;
 	height: 403px;
 	width: 373px;
-	margin-top: 87px;
 	background-color: black !important;
+	margin-top: 87px;
 }
 
 .box1{
 	border: 1px solid white;
 	height: 83px;
 	width: 373px;
-	margin-top: 10px;
 	background-color: black !important;
+	margin-top: 10px;
 }
 
 .box_head{
 	font-size: 49px;
-	padding-top: 11px;
-	padding-left: 107px;
 	font-weight: 400;
+	padding: 11px 0px 0px 107px;
 }
 
 .box_minhead {
 	font-size: 11px;
+	font-weight: 300;
 	margin-top: -7px;
 	padding-left: 129px;
-	font-weight: 300;
 }
 
 .box1_cont{
-	padding-top: 33px;
-	padding-left: 75px;
 	font-weight: 600;;
+	padding: 33px 0px 0px 75px;
 }
 
 #txt{
@@ -41,12 +42,9 @@
 	border-radius: 5px;
 	height: 33px;
 	width: 279px;
-	margin-left: 40px;
-	padding-left: 10px;
-	padding-right: 9px;
 	background-color: rgb(47,46,45);
-	margin-top: 20px;
-	margin-bottom: 10px;
+	margin: 20px 0px 10px 40px;
+	padding: 0px 9px 0px 10px;
 }
 
 #btn{
@@ -54,25 +52,23 @@
 }
 
 #link{
-	padding-left: 127px;
-	padding-top: 19px;	
+	padding: 19px 0px 0px 127px;	
 }
 
 #img{
-	height: 603px;
-	width: 1355px;
-	margin-left: -23px;
+	height: 627px;
+	width: 1366px;
+	margin: 0px 0px -18px -23px;
 }
 
 .form_1{
 	margin-top: 29px;
 }
 
-.footer{
-	background-color: rgb(47,46,45);
-	color: rgb(47,46,45);
+.login_error{
+	color: red;
+	margin: 10px 0px -20px 77px;
 }
-
 
 /*================================*/
 
@@ -80,25 +76,26 @@
 
 .box2 {
 	border: 1px solid white;
-	height: 524px;
+	height: 497px;
 	width: 373px;
-	margin-top: 43px;
 	background-color: black !important;
-	margin-left: 473px;
 	background-image: url('/static/signup.jpeg');
+	margin: 43px 0px 0px 473px;
 }
 
 .box_2{
 	border: 1px solid white;
 	height: 83px;
 	width: 373px;
-	margin-top: 10px;
 	background-color: black !important;
-	margin-left: 473px;
 	background-image: url('/static/signup.jpeg');
-
+	margin: 10px 0px 0px 473px;
 }
 
+.signup_error{
+	color: red;
+	margin: 9px 0px -20px 109px;
+}
 /*================================*/
 
 /*-------------home---------------*/
@@ -107,17 +104,16 @@
 	border: 1px solid white;
 	height: 95px;
 	width: 601px;
-	margin-top: 10px;
 	background-color: black !important;
+	margin-top: 10px;
 }
 
 .box4{
 	border: 1px solid white;
 	height: 887px;
 	width: 601px;
-	margin-top: 23px;
-	margin-bottom: 15px;
 	background-color: black !important;
+	margin: 23px 0px 15px 0px;
 }
 
 
@@ -130,13 +126,12 @@
 	border: 1px solid white;
 	height: 557px;
 	width: 601px;
-	margin-left: -1px;
 	position: relative;
+	margin-left: -1px;
 }
 
 .box_4line{
-	margin-left: 9px;
-	margin-right: 9px;
+	margin: 5px 9px 0px 9px;
 }
 
 #home_pix{
@@ -159,20 +154,19 @@
 .box5{
 	height: 118px;
 	width: 477px;
-	margin-top: 3px;
 	background-color: rgb(64,64,64,0.13) !important;
-	margin-left: 75px;
 	position: fixed;
+	margin: 3px 0px 0px 75px;
 }
 
 .box_5{
-	height: 323px;
+	height: 333px;
 	width: 477px;
-	margin-top: 139px;
-	margin-left: 79px;
 	background-color: rgb(64,64,64, 0.13) !important;
 	position: fixed;
+	margin: 139px 0px 0px 79px;
 }
+
 .stdot{
 	height: 67px;
 	width: 67px;
@@ -213,7 +207,7 @@
 
 .suggest{
 	margin-left: 95px;
-	margin-top: -51px;
+	margin-top: -45px;
 	font-size: 17px;
 }
 
@@ -301,14 +295,20 @@
 }
 
 .box5_dot{
-	height: 67px;
-	width: 67px;
+	height: 59px;
+	width: 59px;
 	background-color: black;
 	border-radius: 50%;
 	display: inline-block;
-	margin-top: 19px;
-	margin-left: 11px;
+	margin-top: 13px;
+	margin-left: 27px;
 	border: 1px solid white;
+}
+
+.box5_pic {
+    height: 57px;
+    width: 57px;
+    border-radius: 50%;
 }
 
 #cmnt{
@@ -316,16 +316,14 @@
 	border-radius: 3px;
 	height: 33px;
 	width: 525px;
-	margin-left: 11px;
-	padding-left: 10px;
-	background-color: rgb(47,46,45);
 	color: white;
-	margin-bottom: 10px;
-	margin-top: 17px;
+	background-color: rgb(47,46,45);
+	padding-left: 10px;
+	margin: 2px 0px 10px 10px ;
 }
 
 .cmnt_section{
-	height: 107px;
+	height: 132px;
 	width: 587px;
 	overflow: hidden;
 }
@@ -409,21 +407,18 @@
 
 .box6{
 	border: 1px solid white;
-	height: 507px;
+	height: 535px;
 	width: 923px;
-	margin-top: 3px;
-	margin-bottom: 14px;
 	background-color: black !important;
+	margin: 3px 0px 14px 0px;
 }
 
 .box_6{
 	border: 1px solid white;
-	height: 507px;
+	height: 535px;
 	width: 319px;
-	margin-top: -1px;
-	margin-left: -24px;
 	background-color: black !important;
-	
+	margin: -1px 0px 0px -24px;
 }
 
 .line{
@@ -452,9 +447,19 @@
 	border: 1px solid white;
 }
 
+.box6dot_img{
+	height: 59px;
+	width: 57px;
+	background-color: rgb(47,46,45);
+	border-radius: 50%;
+	display: inline-block;
+	margin: -1px 0px 0px -1px;
+	
+}
+
 .chat_profile{
-	margin-top: -53px;
-	margin-left: 99px;
+	cursor: pointer;
+	margin: -53px 0px 0px 99px;
 }
 
 .chat_txt1{
@@ -470,9 +475,9 @@
 
 .box_chat{
 	border : 1px solid white;
-	width: 605px;
-	height:	507px;
-	margin-left: -80px;
+	width: 606px;
+	height:	535px;
+	margin-left: -81px;
 	margin-top: -1px;
 	overflow: hidden;
 	display: none;
@@ -490,7 +495,7 @@
 }
 
 .chat_section{
-	height: 377px;
+	height: 405px;
 	width: 616px;
 	overflow: hidden;
 	margin: 13px 0px 13px 0px;
@@ -552,12 +557,6 @@
 	overflow: unset;
 }
 
-.row_1{
-	margin-top: -27px;
-	margin-left: 77px !important;
-	width: 183px;
-}
-
 .close {
        color: #aaa;
        float: right;
@@ -571,22 +570,48 @@
 }
 
 .modalheader{
-	font-weight: 399;
+	font-weight: 400;
 	font-size: 23px;
 	padding-left: 17px;
 }
 
+.modalheader2 {
+    font-weight: 399;
+    margin: 0px 0px -47px 17px;
+}
+
 .modal_content{
-	padding-left: 17px;
-	padding-top: 9px;
+	padding: 9px 0px 0px 17px;
 }
 
 #modal_box{
 	border: 1px solid black;
-	height: 159px;
-	width: 379px;
-	margin-top: -33px;
+	height: 229px;
+	width: 439px;
 	overflow: auto;
+	background-color: rgb(47,46,45);
+	margin: -17px 0px 0px -26px;
+}
+
+.follow_dot{
+	border: 1px solid white;
+	height: 35px;
+	width: 35px;
+	border-radius: 50%;
+	margin-left: 19px;
+	margin-top: 7px;
+}
+
+.follow_pic{
+	height: 33px;
+	width: 33px;
+	border-radius: 50%;
+}
+
+.follow_names{
+	margin: -30px 0px 0px 63px;
+	font-size: 18px;
+	cursor: pointer;
 }
 
 .inp{
@@ -687,6 +712,18 @@
 #cimg{
 	border-radius: 50%;
 	position: absolute;
+	top: 77px;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	margin: auto;
+	width: 185px;
+	height: 185px;
+}
+
+#cimgusr{
+	border-radius: 50%;
+	position: absolute;
 	top: -167px;
 	bottom: 0;
 	left: 0;
@@ -725,6 +762,7 @@
 	padding-right: 40px;
 	font-size: 17px;
 	font-weight: 400;
+    cursor: pointer;
 	color: #96a0a6;
 }
 
@@ -781,9 +819,10 @@
 	background-color: black !important;
 	margin-left: 40px;
 }
+
 .tab{
 	overflow: hidden !important;
-	margin-left: 429px;
+	margin-left: 374px;
 }
 
 .tab span{
@@ -815,6 +854,54 @@
         border-top: none;
 }
 
+.home_box{
+	height: 381px;
+	width: 100%;
+	background-color: rgb(64,64,64, 0.13) !important;
+	margin: 10px 0px 0px 3px;
+}
+.home_mat{
+	margin-left: 31px;
+	margin-top: 19px;
+}
+
+.hname{
+	margin: -31px 0px 0px 43px;
+}
+
+.hpass{
+	margin: -26px 0px 0px 30px;
+}
+
+.hprivate{
+	margin: -26px 0px 0px 30px;
+}
+
+.home_name{
+	margin: 19px 0px 0px 75px;
+	font-size: 21px;
+	color: white;
+}
+
+.home_nameans{
+	margin: 19px 0px 0px 5px;
+	font-size: 21px;
+	color: white;
+}
+
+.home_pass{
+	margin: 50px 0px 0px -121px;
+	font-size: 21px;
+	color: white;
+}
+
+.home_private{
+	margin: -30px 0px 0px 300px;
+	font-size: 21px;
+	color: white;
+}
+
+
 .box_post{
 	height: 333px;
 	width: 293px;
@@ -845,8 +932,8 @@
 }
 
 .chatter_box{
-	width: 287px;
-	margin-left: 13px;
+	width: 315px;
+	margin-left: 0px;
 	height: 67px;
 }
 
@@ -868,7 +955,99 @@
 	padding-left: 273px;
 	font-weight: 400;
 }
+
+.del{
+	margin-top: -24px;
+	margin-right: 37px;
+}
+
+#modalfing{
+    border: 1px solid white;
+    border-radius: 7px;
+    height: 60%;
+    width: 400px;
+    left: 34%;
+    top: 28%;
+    background: black;
+    z-index: 100;
+    display: None;
+    position: fixed;
+}
+
+.mfollowhead{
+    font-size: 25px;
+    margin: 11px 0px 0px 13px;
+}
+
+.modalcross{
+    margin: -27px 0px 0px 89%;
+}
+
+.scrollfing{
+    border: 1px solid white;
+    border-radius: 0px 0px 7px 7px;
+    margin-top: -9px;
+    height: 322px;
+    width: 399px;
+    margin-left: -1px;
+    overflow-y: auto;
+}
+
+.scroll_dot{
+	border: 1px solid white;
+	height: 51px;
+	width: 51px;
+	border-radius: 50%;
+    margin: 11px 0px 17px 19px;
+}
+
+.scroll_pic{
+	height: 49px;
+	width: 49px;
+	border-radius: 50%;
+}
+
+.scroll_names{
+	margin: -55px 0px 5px 85px;
+	font-size: 21px;
+    color: white;
+	cursor: pointer;
+}
+
+#modalfer{
+    border: 1px solid white;
+    border-radius: 7px;
+    height: 60%;
+    width: 400px;
+    left: 34%;
+    top: 28%;
+    background: black;
+    z-index: 100;
+    display: None;
+    position: fixed;
+}
+
+.modalcros{
+    margin: -27px 0px 0px 89%;
+}
+
+.mfollowerhead{
+    font-size: 25px;
+    margin: 11px 0px 0px 13px;
+}
+
+.scrollfer{
+    border: 1px solid white;
+    border-radius: 0px 0px 7px 7px;
+    margin-top: -9px;
+    height: 322px;
+    width: 399px;
+    margin-left: -1px;
+    overflow-y: auto;
+}
 /*====================================*/
+
+
 /*=============reset===================*/
 .reset_box{
 	border: 1px solid white;
@@ -919,13 +1098,10 @@
 	border-radius: 5px;
 	height: 31px;
 	width: 279px;
-	margin-left: 23px;
-	padding-left: 10px;
-	background-color: rgb(47,46,45);
-	margin-top: 20px;
-	margin-bottom: 10px;
-	padding-right: 9px;
 	color: white;
+	background-color: rgb(47,46,45);
+	margin: 20px 0px 10px 23px;
+	padding: 0px 9px 0px 10px;
 }
 
 #re_btn{
@@ -957,6 +1133,9 @@ html,body {
   	margin: 0;
 }
 
+.md{
+	margin-bottom: 0px !important;
+}
 
 i {
 	cursor: pointer;
@@ -968,3 +1147,12 @@ i {
 	margin-left: 119px;
 }
 
+#searching{
+	border: 1px solid white;
+	border-radius: 5px;
+	height: 27px;
+	width: 295px;
+	background-color: rgb(47,46,45);
+	margin: 19px 0px 10px 271px;
+	padding: 0px 9px 0px 10px;
+}

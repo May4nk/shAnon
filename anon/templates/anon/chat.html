@@ -2,50 +2,46 @@
 {% extends 'base.html' %}
 {% block content%}
 {% load static %}
-<div class='row'>
+<div class='row md'>
     <div class='box6'>
         <div class='col s12'>
 	    <div class='col s5'>
 	        <div class=box_6>
 		    <div class='white-text box6_title'>
 			    <a href='{% url 'profile' usr.username%}' data={{usr.id}}>{{usr.username}}</a>
-		            <span class='right box6_icn'>
+		            <div class='right box6_icn'>
 				    <i id='modal1' class='material-icons tiny blue-text'>border_color </i>
-			    </span>
+			    </div>
 		    </div>
-		    <!-- modal1 -->
+       <!-------------- modal1 ------------------>
 		    <div id='modalx' class='modal'>
 		        <div class='row'>
 			    <span class='blue-text modalheader'>Add to chat</span>
+                <div class='blue-text modalheader2'>but follow them first...</div>
 			    <i class="material-icons blue-text close">cancel</i>
 			</div>
 			<hr/ class='white-text'>
 			<div class='row modal_content'>
-			     <div class='row row_1'>
-			         <div class="input-field">
-			             <input placeholder='search' type="text" class='inp'>
-			         </div>
-			     </div>
 			     <div id='modal_box'>
 				{% for i in ppl %}
-        		     <p>
-                                 <label>
-					 <input type="checkbox" class="blt filled-in"value='{{i.following.id}}' />
-				    <span>{{i.following}}</span>
-				</label>
-			    </p>
+				<div class='follow_dot'>
+					<img class='follow_pic' src='{% static i.pic %}' onerror=this.src='https://st2.depositphotos.com/1009634/7235/v/600/depositphotos_72350117-stock-illustration-no-user-profile-picture-hand.jpg'>
+			         </div>
+			         <div class='follow_names' data-id={{i.following.id}}>{{i.following}}</div>
 			    {% endfor %}
 			    </div>
 			</div>
 	            </div>
-		    <!--modal1 end -->
+      <!-----------------modal1 end ---------------->
 		    <hr/ class='white-text liine'>
 		    {% for j in solo %}
 		    <div class='chatter_box' id={{j.second.id}}>
 		          <div class='row'>
-		              <div class='box6dot'></div>
+		              <div class='box6dot'>
+				      <img src='{% static j.second.pic %}' class='box6dot_img' onerror=this.src='https://st2.depositphotos.com/1009634/7235/v/600/depositphotos_72350117-stock-illustration-no-user-profile-picture-hand.jpg'>
+			      </div>
 			      <div class='chat_profile'>
-				  <a class='chat_txt1' href=''>{{j.second|title}}</a>
+				  <div class='chat_txt1' href=''>{{j.second|title}}</div>
 			          <div class='chat_txt2'>last seen now</div>
 			      </div>
 			  </div>
@@ -57,17 +53,24 @@
 	    {% for j in solo %}
 		 <div class='box_chat' id={{j.second.id}}>
 	            <div class='row'>
-		        <div class='header'>
-				{{j.second|title}}
+			<div class='header' > 
+			        <a href='{% url 'profile' j.second %}'>
+				    {{j.second|title}}
+				</a>
+			</div>
+			<div class='del' data-id={{j.second.id}}>
+				<i class='material-icons blue-text dele right'>
+					delete_forever
+				</i>
 			</div>
 	            </div>
 		    <hr/ class='white-text'>
 		    <div class='chat_section'>
-			<div class='ove'>
+            <div class='ove' id='ove{{j.second.id}}'>
 			 {% for i in cm %}
 			 {% if i.thread.first == usr and i.thread.second == j.second  or i.thread.first == j.second and i.thread.second == usr %}
 
-			    {% if i.thread.first == usr %}
+			   {% if i.thread.first == usr %}
 		            <div class='row'>
 				    <div class='sender'>{{i.message}}</div> 
 			    </div>
@@ -78,7 +81,6 @@
 			    {% endif %}
 			 {% endif %}
 			 {% endfor %}
-
 		        </div>
 	            </div>
 		    <div class='row'>

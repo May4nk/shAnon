@@ -12,6 +12,7 @@ urlpatterns = [
         path('home/unsaved/',views.unsave_post,name='unsaved'),
         path('home/cmnt/',views.comment,name='cmnt'),
         path('inbox/',views.chat,name='chat'),
+        path('inbox/delete/',views.chat_del,name='chat_del'),
         path('post/',views.post_add,name='post'),
         path('logout/',views.logut,name='logout'),
         path('u/<str:usrname>/',views.profile,name='profile'),

@@ -70,11 +70,10 @@ $('.box41_icn').click(function(){
 		type: 'POST',
 		url: 'like/',
 		headers: {
-		"X-CSRFToken": csrftoken,
+			"X-CSRFToken": csrftoken,
 		},
 		data: {
 			post_id: like_id,
-		//	csrfmiddlewaretoken: csrftoken,
 		},
 		'success': (data) => {
 			if(data){
@@ -91,11 +90,10 @@ $('.box42_icn').click(function(){
 		type: 'POST',
 		url: 'unlike/',
 		headers: {
-		"X-CSRFToken": csrftoken,
+			"X-CSRFToken": csrftoken,
 		},
 		data: {
 			post_id: like_id,
-		//	csrfmiddlewaretoken: csrftoken,
 		},
 		'success': (data) => {
 			if(data){
@@ -219,11 +217,12 @@ $('.pr_title').hover(function(){
         $('<div class="profile_modal"></div>')
         .html(
     "<div class='row'>\n"+
-        "<div class='box5_dot'></div>\n"+
-	"<div class='pm_text'>\n"+
-	    "<a class='pm_text1' href=''>"+username+"</a>\n"+
-	   " <div class='pm_text2'>"+name+"</div>\n"+
-	"</div>\n"+
+        "<div class='box5_dot'>\n"+
+        "</div>\n"+
+	    "<div class='pm_text'>\n"+
+	        "<a class='pm_text1' href=''>"+username+"</a>\n"+
+	        "<div class='pm_text2'>"+name+"</div>\n"+
+	    "</div>\n"+
     "</div>\n"+
     "<hr class='white'>\n"+
     "<div class='row pm_follow'>\n"+
@@ -249,15 +248,15 @@ $('.pr_title').hover(function(){
 }, function() {
         $('.profile_modal').remove();
 }).mousemove(function(e) {
-        var mousex = e.pageX + 20; //Get X coordinates
-        var mousey = e.pageY + 10; //Get Y coordinates
+        var mousex = e.pageX + 20; 
+        var mousey = e.pageY + 10; 
         $('.profile_modal')
         .css({ top: mousey, left: mousex })
 
 });
 
 $('.profile_status').one('click',function(e){
-	a = $(this).html()
+	let a = $(this).html()
 	$(this).append(
 	"<input id='status_input' type='text' maxlength='150' placeholder='"+a.trim()+"'/>"
 	)
@@ -271,7 +270,7 @@ $('.profile_status').one('click',function(e){
 				      "X-CSRFToken": getcsrfToken('csrftoken'),
 			      },
 			      data: {
-				      stat: $('#status_input').val(),
+				      stat : $('#status_input').val(),
 			      },
 			      'success': (data) => {
 				      if(data){
@@ -285,7 +284,37 @@ $('.profile_status').one('click',function(e){
 
 })
 
+$('.dele').click(function(){
+	let delete_id = $(this).parent('div').attr('data-id')
+	$.ajax({
+	      type: 'POST',
+	      url: 'delete/',
+	      headers: {
+		      "X-CSRFToken": getcsrfToken('csrftoken'),
+	      },
+	      data: {
+		      delete_id: delete_id,
+	      },
+	      'success': (data) => {
+		      if(data){
+			      location.reload();
+		      }
+	      }
+        }); 
+});
 
+$('#fing').click(function (){
+    $('#modalfing').show();
+});
 
+$('.modalcross').click(function (){
+    $('#modalfing').hide();
+})
 
+$('#fer').click(function (){
+    $('#modalfer').show();
+});
 
+$('.modalcros').click(function (){
+    $('#modalfer').hide();
+})

@@ -7,7 +7,7 @@ from django.core.mail import send_mail
 from crypt import crypt
 from random import shuffle
 from django.db import IntegrityError
-from django.db.models import Q
+from django.contrib import messages
 
 def loggin(req):
     if req.user.is_authenticated:
@@ -19,6 +19,9 @@ def loggin(req):
         if usr is not None:
             login(req,usr)
             return redirect(reverse('home'))
+        else:
+            messages.info(req,'Username or Password is incorrect!!')
+            return redirect('login')
     return render(req,'anon/login.html')
 
 
@@ -28,10 +31,18 @@ def signup(req):
         email = req.POST['email']
         username = req.POST['username']
         password = req.POST['password']
-        susr = Suser.objects.create_user(name=name,email=email,username=username,password=password)
-        if susr:
-            susr.save()
-            return redirect(reverse('login'))
+        if password:
+            if Suser.objects.filter(email=email):
+                messages.info(req,'Email is already registered!')
+                return redirect('signup')
+            elif Suser.objects.filter(username=username):
+                messages.info(req,'Username taken!!')
+                return redirect('signup')
+            else:
+                susr = Suser.objects.create_user(name=name,email=email,username=username,password=password)
+                if susr:
+                    susr.save()
+                    return redirect(reverse('login'))
     return render(req,'anon/signup.html')
 
 
@@ -118,8 +129,6 @@ def chat(req):
                         chatter.save()
                 except IntegrityError:
                     continue
-                 
-
         cm = Messages.objects.all()
         thread=Chat.objects.by_user(user=usr).prefetch_related('chatmsg')
         context = {
@@ -131,6 +140,17 @@ def chat(req):
         return render(req,'anon/chat.html',context)
     else:
         return redirect(reverse('login'))
+
+
+def chat_del(req):
+    if req.method=='POST':
+        del_id = req.POST['delete_id']
+        del_usr = Chat.objects.filter(first=Suser.objects.get(id=req.user.id),second=Suser.objects.get(id=del_id))
+        usr_del = Chat.objects.filter(first=Suser.objects.get(id=del_id),second=Suser.objects.get(id=req.user.id))
+        if del_usr:
+            del_usr.delete()
+            usr_del.delete()
+            return redirect('chat')
 
 
 def post_add(req):
@@ -169,8 +189,14 @@ def profile(req,usrname):
         use_follower = Follow.objects.filter(following=use.id)
         if req.method=='POST':
             stat = req.POST['stat']
-            usr.status = stat
-            usr.save()
+            if len(stat) == 0:
+                stat='Give me a quote'
+                usr.status = stat
+                usr.save()
+            else:
+                usr.status = stat
+                usr.save()
+
     context = {
             'usr': usr,
             'use': use,
