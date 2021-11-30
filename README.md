@@ -45,7 +45,7 @@ tracking of data and more security.
 
 * Add post
 
-![Screenshot from 2021-12-01 01-23-36](https://user-images.githubusercontent.com/78518826/144120039-d66dd442-442a-4e64-a51a-9248fe839cb4.png)
+![Screenshot from 2021-12-01 01-48-10](https://user-images.githubusercontent.com/78518826/144121399-aac826d2-c2aa-4fbf-92cd-d3fa54c12970.png)
 
 * Chat 
 
