@@ -1,13 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import AbstractBaseUser,BaseUserManager,PermissionsMixin
-from django.db.models import Q
+from django.core.validators import RegexValidator
 
-class ThreadManager(models.Manager):
-    def by_user(self, **kwargs):
-        user = kwargs.get('user')
-        lookup = Q(first=user) | Q(second=user)
-        qs = self.get_queryset().filter(lookup).distinct()
-        return qs
 
 class UserManager(BaseUserManager):
     def create_user(self,name,email,username,password=None):
@@ -42,10 +36,12 @@ class UserManager(BaseUserManager):
 
 class Suser(AbstractBaseUser):
     name = models.TextField(max_length=20)
-    username = models.CharField(max_length=30,unique=True)
+    usrname_validator = RegexValidator(regex='[a-zA-Z0-9_]+')
+    username = models.CharField(max_length=30,unique=True,validators=[usrname_validator])
     birth_date = models.DateField(null=True,blank=True)
     email = models.EmailField(max_length=50,unique=True)
-    password = models.CharField(max_length=30)
+    psswd_validator = RegexValidator(regex='[a-zA-Z0-9_@#!$,]{7,}')
+    password = models.CharField(max_length=30,validators=[psswd_validator])
     contact = models.IntegerField(blank=True,null=True)
     pic = models.CharField(max_length=500,blank=True)
     reset_link = models.CharField(max_length=50,blank=True,null=True)
@@ -104,7 +100,6 @@ class Chat(models.Model):
     updated = models.DateTimeField(auto_now =True)
     created = models.DateTimeField(auto_now_add =True)
     
-    objects = ThreadManager()
     class Meta:
         unique_together = ['first','second']
 

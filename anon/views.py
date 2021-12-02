@@ -130,7 +130,6 @@ def chat(req):
                 except IntegrityError:
                     continue
         cm = Messages.objects.all()
-        thread=Chat.objects.by_user(user=usr).prefetch_related('chatmsg')
         context = {
                 'usr':usr,
                 'ppl':ppl,
